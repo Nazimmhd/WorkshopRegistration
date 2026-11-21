@@ -1,0 +1,44 @@
+
+@page
+@model WorkshopRegistration.Pages.RegistrationsModel
+
+@{
+    ViewData["Title"] = "Saved Registrations";
+}
+
+<h2>Saved Workshop Registrations</h2>
+
+@if (Model.Registrations.Count == 0)
+{
+    <p>No registrations found.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Age</th>
+                <th>Workshop</th>
+                <th>Laptop Required</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var registration in Model.Registrations)
+            {
+                <tr>
+                    <td>@registration.FirstName</td>
+                    <td>@registration.Age</td>
+                    <td>@registration.Workshop</td>
+                    <td>
+                        @(registration.RequiresLaptop ? "Yes" : "No")
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a asp-page="/Registration" class="btn btn-primary">
+    New Registration
+</a>
