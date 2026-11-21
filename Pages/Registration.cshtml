@@ -1,0 +1,55 @@
+
+@page
+@model WorkshopRegistration.Pages.RegistrationModel
+
+<h2>Workshop Registration</h2>
+
+@if (Model.IsSubmitted)
+{
+    <h3>Registration Successful!</h3>
+    <p>Thank you, @Model.Registration.FirstName!</p>
+    <p>Workshop: @Model.Registration.Workshop</p>
+}
+else
+{
+    <form method="post">
+        <div>
+            <label asp-for="Registration.FirstName"></label>
+            <input asp-for="Registration.FirstName" />
+            <span asp-validation-for="Registration.FirstName"
+                  class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="Registration.Age"></label>
+            <input asp-for="Registration.Age" type="number" />
+            <span asp-validation-for="Registration.Age"
+                  class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="Registration.Workshop"></label>
+            <select asp-for="Registration.Workshop">
+                <option value="">Select a workshop</option>
+                <option value="C# Programming">C# Programming</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Database Design">Database Design</option>
+            </select>
+            <span asp-validation-for="Registration.Workshop"
+                  class="text-danger"></span>
+        </div>
+
+        <div>
+            <input asp-for="Registration.RequiresLaptop" />
+            <label asp-for="Registration.RequiresLaptop">
+                I require a laptop
+            </label>
+        </div>
+
+        <button type="submit">Register</button>
+    </form>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
